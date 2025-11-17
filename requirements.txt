@@ -1,0 +1,6 @@
+# Requirements for the FastAPI application
+fastapi
+uvicorn[standard] # ASGI server and standard utility packages
+sqlmodel
+asyncpg # Asynchronous driver for PostgreSQL
+python-dotenv # To load the .env file
