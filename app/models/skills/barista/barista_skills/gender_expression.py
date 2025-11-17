@@ -1,5 +1,8 @@
-from models.entities.skills.base_skill import BaseSkill
-from models.entities.enums.skills.barista_skills import BaristaSkills
+from sqlmodel import Field
+from models.skills.base_skill import BaseSkill
+from models.entities.base_entity import BaseEntity
+from models.enums.skills.barista_skills import BaristaSkills
+from models.enums.skill_types import SkillType
 from models.effects.positive_effects.buffs.agility import Agility
 from models.effects.mixed_effects.rage import Rage
 
