@@ -16,9 +16,15 @@ class BaseSkill(SQLModel, ABC):
     description: str | None = Field(default=None)
     level: int = Field(default=1)
 
+    cooldown: int = Field(default=0)  # Number of turns before the skill can be used again
+    current_cooldown: int = Field(default=0)  # Tracks the remaining cooldown
+
     accuracy: float = Field(default=1)  # Represents the chance of successfully hitting the target
     power: int = Field(default=0)  # Represents the skill's power or effectiveness
     effect: BaseAbility | None = Field(default=None)  # Represents any special effect the skill may have
+
+    is_multi_target: bool = Field(default=False)  # Whether the skill can target multiple entities
+    is_multi_hit: bool = Field(default=False)    # Whether the skill hits multiple times
 
     @abstractmethod
     def use(self, user: BaseEntity, target: BaseEntity) -> None:

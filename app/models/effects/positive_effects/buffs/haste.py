@@ -14,9 +14,9 @@ class Haste(BaseEffect):
         effects = []
         effects.append(AppliedEffect(
             effect_name=SideEffects.HASTE.value,
-            description="Increases speed by 50%.",
+            description="Doubles speed.",
             target=StatType.SPEED,
-            magnitude=1.5, 
+            magnitude=self.BUFF_MULTIPLIER,
             duration=duration
         ))
 

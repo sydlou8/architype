@@ -1,49 +1,35 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import EffectType, MainEffects, SideEffects
-from models.enums.stat_types import StatType
+from models.enums.effect_types import MainEffects
+from models.effects.positive_effects.buffs.strengthen import Strengthen
+from models.effects.negative_effects.main_effects.confusion import Confusion
+from models.effects.negative_effects.debuffs.weakness import Weakness
+from models.effects.negative_effects.debuffs.frailty import Frailty
+
 
 class Rage(BaseEffect):
     name: str = Field(default=MainEffects.RAGE.value)
-    description: str = Field(default="A mixed effect that causes confusion (to be implemented), reduces dodge and accuracy, but increases physical damage.")
+    description: str = Field(default="Applies confusion, weakness, and frailty. Also applies strengthen.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
-        """Apply the Rage effect to the entity."""
-        # TODO: Apply confusion damage
-        # effects = []
-        # effects.append(AppliedEffect(
-        #     effect_name=EffectType.CONFUSION.value,
-        #     description="Causes damage over time.",
-        #     target=StatType.HEALTH,
-        #     tick_magnitude=tick_value,
-        #     duration=duration
-        # ))
-        # Apply debuffs: weakness and frailty
-        # TODO: Adjust for unique effect -- currently stackable --> adjust magnitude after change
-        effects.append(AppliedEffect(
-            effect_name=SideEffects.STRENGTHEN.value,
-            description="Increase physical damage dealt.",
-            target=StatType.PHYSICAL_ATTACK,
-            # is_unique_effect=True,
-            magnitude=1.5,  # Example: increases physical damage by 50%
-            duration=duration
-        ))
-        effects.append(AppliedEffect(
-            effect_name=SideEffects.BLIND.value,
-            description="Reduces accuracy.",
-            target=StatType.ACCURACY,
-            # is_unique_effect=True,
-            magnitude=0.5,  # Example: reduces accuracy by 50%
-            duration=duration
-        ))
-        effects.append(AppliedEffect(
-            effect_name=SideEffects.CRIPPLED.value,
-            description="Reduces dodge.",
-            target=StatType.DODGE,
-            # is_unique_effect=True,
-            magnitude=0.5,  # Example: reduces dodge by 50%
-            duration=duration
-        ))
+        """Generate the Rage effect to the entity."""
+        
+        effects = []
+        
+        # TODO: Apply confusion 
+        # confusion_effects = Confusion().generate_effects(duration=duration)
+        # effects.extend(confusion_effects)
+
+        # Apply weakness, and frailty
+        weakness_effects = Weakness().generate_effects(duration=duration)
+        effects.extend(weakness_effects)
+
+        frailty_effects = Frailty().generate_effects(duration=duration)
+        effects.extend(frailty_effects)
+
+        # Apply strengthen
+        strengthen_effects = Strengthen().generate_effects(duration=duration)
+        effects.extend(strengthen_effects)
 
         return effects

@@ -15,6 +15,8 @@ class EspressoBomb(BaseSkill):
 
     power: int = Field(default=50)  # Example power value
 
+    is_multi_target: bool = Field(default=True)  # Affects multiple targets
+
     BURN_DURATION: int = 5  # Burn lasts for 5 turns
     BURN_TICK_DAMAGE: int = 3  # Burn deals 3 damage per turn
 

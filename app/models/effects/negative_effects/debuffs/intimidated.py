@@ -1,22 +1,23 @@
+# halves critical chance for a duration
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
 from models.enums.effect_types import EffectType, SideEffects
 from models.enums.stat_types import StatType
 
-class Pierce(BaseEffect):
-    name: str = Field(default=SideEffects.PIERCE.value)
-    description: str = Field(default="A positive effect that increases critical chance.")
+class Intimidated(BaseEffect):
+    name: str = Field(default=SideEffects.INTIMIDATED.value)
+    description: str = Field(default="A negative effect that reduces critical chance.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
-        """Generate the Pierce effect to the entity."""
+        """Generate the Intimidated effect to the entity."""
 
         effects = []
         effects.append(AppliedEffect(
-            effect_name=SideEffects.PIERCE.value,
-            description="Doubles critical chance.",
+            effect_name=SideEffects.INTIMIDATED.value,
+            description="Halves critical chance.",
             target=StatType.CRITICAL_CHANCE,
-            magnitude=self.BUFF_MULTIPLIER,
+            magnitude=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

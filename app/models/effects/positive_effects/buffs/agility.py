@@ -14,9 +14,9 @@ class Agility(BaseEffect):
         effects = []
         effects.append(AppliedEffect(
             effect_name=SideEffects.AGILITY.value,
-            description="Increases dodge chance by 50%.",
+            description="Doubles dodge chance.",
             target=StatType.DODGE,
-            magnitude=1.5, 
+            magnitude=self.BUFF_MULTIPLIER,
             duration=duration
         ))
 

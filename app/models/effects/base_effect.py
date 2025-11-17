@@ -13,6 +13,9 @@ class BaseEffect(SQLModel, ABC):
     duration: int | None = Field(default=None)  # Duration in turns
     is_unique_effect: bool = Field(default=False)  # Whether the effect is unique (non-stackable)
 
+    BUFF_MULTIPLIER: float = 2.0
+    DEBUFF_MULTIPLIER: float = 0.5
+    
     def __init__(self, duration: int | None = None, is_unique_effect: bool = False, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.duration = duration

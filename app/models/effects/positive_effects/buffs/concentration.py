@@ -14,9 +14,9 @@ class Concentration(BaseEffect):
         effects = []
         effects.append(AppliedEffect(
             effect_name=SideEffects.CONCENTRATION.value,
-            description="Increases accuracy by 50%.",
+            description="Doubles accuracy.",
             target=StatType.ACCURACY,
-            magnitude=1.5,  
+            magnitude=self.BUFF_MULTIPLIER,  
             duration=duration
         ))
 

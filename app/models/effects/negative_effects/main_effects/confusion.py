@@ -1,0 +1,22 @@
+# 50% chance to cause the affected entity to hurt itself for duration
+from sqlmodel import Field
+from models.effects.base_effect import BaseEffect
+from models.effects.applied_effect import AppliedEffect
+from models.enums.effect_types import MainEffects
+
+class Confusion(BaseEffect):
+    name: str = Field(default=MainEffects.CONFUSION.value)
+    description: str = Field(default="A negative effect that has a 50% chance to cause the affected entity to hurt itself for duration.")
+
+    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+        """Generate the Confusion effect to the entity."""
+
+        effects = []
+        effects.append(AppliedEffect(
+            effect_name=MainEffects.CONFUSION.value,
+            description="50% chance to hurt itself each turn.",
+            tick_value=tick_value, # this is 10% of target's physical attack stat
+            duration=duration
+        ))
+
+        return effects
