@@ -1,3 +1,4 @@
+from typing import Any, Callable
 from enum import Enum
 from functools import wraps
 
@@ -58,8 +59,8 @@ class SideEffects(EffectType):
     FRAILTY = "frailty"  # reduces healing received
     INTIMIDATED = "intimidated"  # reduces critical chance
 
-def register_effect(effect_type: EffectType):
-    def decorator(func):
+def register_effect(effect_type: EffectType) -> Callable[..., Any]:
+    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
         def wrapper(*args, **kwargs):
             return func(self, *args, **kwargs)

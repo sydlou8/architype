@@ -1,10 +1,6 @@
-from sqlmodel import Field
-
-from models.entities.base_entity import BaseEntity
 from models.entities.skills.base_skill import BaseSkill
 from models.entities.enums.effect_type import EffectType
 from models.entities.enums.skills.barista_skills import BaristaSkills
-from models.entities.enums.skill_types import SkillType
 from models.entities.effects.negative_effects.burn import Burn
 from models.entities.effects.applied_effect import AppliedEffect
 
