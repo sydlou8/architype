@@ -1,9 +1,9 @@
 from sqlmodel import Field
 
 from models.entities.base_entity import BaseEntity
-from models.entities.effects.base_effect import BaseEffect
-from models.entities.enums.effect_type import EffectType
-from models.entities.effects.applied_effect import AppliedEffect
+from models.effects.base_effect import BaseEffect
+from models.effects.applied_effect import AppliedEffect
+from models.enums.effect_type import EffectType
 
 class Burn(BaseEffect):
     name: str = Field(default=EffectType.BURN.value)

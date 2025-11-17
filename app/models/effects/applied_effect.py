@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import Any
 from uuid import UUID, uuid4
 
-from models.entities.enums.stat_types import StatType
+from models.enums.stat_types import StatType
 
 class AppliedEffect(SQLModel, ABC):
     id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)

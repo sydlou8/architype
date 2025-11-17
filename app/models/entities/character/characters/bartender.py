@@ -1,10 +1,4 @@
-from typing import Any
-from sqlmodel import Field
-
-from models.entities.skills.base_skill import Skill
-from models.entities.base_entity import BaseEntity
 from models.entities.character.character import Character
-from models.entities.enums.character_classes import CharacterClasses
 
 class Bartender(Character):
     role: str = Field(default=CharacterClasses.BARTENDER.value)
@@ -31,15 +25,3 @@ class Bartender(Character):
         self.physical_defense += 1
         self.magical_defense += 2
         self.speed += 3
-
-    def attack(self, skill: Skill, target: BaseEntity) -> None:
-        skill.use(self, target)
-
-    def defend(self, damage: int) -> None:
-        pass  # Implementation of defend logic
-    
-    def take_damage(self, amount: int) -> None:
-        pass  # Implementation of take damage logic
-    
-    def heal(self, amount: int) -> None:
-        pass  # Implementation of heal logic

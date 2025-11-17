@@ -4,10 +4,10 @@ from sqlmodel import SQLModel, Field
 from uuid import UUID, uuid4
 from functools import wraps
 
-from models.entities.skills.base_skill import BaseSkill
-from models.entities.effects.base_effect import Effect
-from models.entities.effects.applied_effect import AppliedEffect
-from models.entities.enums.stat_types import StatType, register_stat, stats_registry 
+from models.skills.base_skill import BaseSkill
+from models.effects.base_effect import Effect
+from models.effects.applied_effect import AppliedEffect
+from models.enums.stat_types import StatType, register_stat, stats_registry 
 
 class BaseEntity(SQLModel, ABC):
     id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)

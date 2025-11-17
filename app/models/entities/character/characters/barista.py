@@ -1,10 +1,10 @@
 from typing import Any
 from sqlmodel import Field
 
-from models.entities.skills.base_skill import Skill
+from models.skills.base_skill import Skill
 from models.entities.base_entity import BaseEntity
 from models.entities.character.character import Character
-from models.entities.enums.character_classes import CharacterClasses
+from models.enums.character_classes import CharacterClasses
 
 class Barista(Character):
     role: str = Field(default=CharacterClasses.BARISTA.value)

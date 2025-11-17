@@ -3,9 +3,10 @@ from typing import Any
 from sqlmodel import Field
 
 from models.entities.base_entity import BaseEntity
-from models.entities.enums.stat_types import StatType
-from models.entities.enums.skill_types import SkillType
-from models.entities.enums.effect_types import EffectType, effect_registry, register_effect
+from models.enums.character_classes import CharacterClasses
+from models.enums.stat_types import StatType
+from models.enums.skill_types import SkillType
+from models.enums.effect_types import EffectType, effect_registry, register_effect
 
 class Character(BaseEntity, ABC):
     role: str | None = None 
