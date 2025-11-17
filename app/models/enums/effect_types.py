@@ -51,14 +51,17 @@ class SideEffects(EffectType):
     CONCECRATED = "concecrated"  # increases healing received 
 
     # Debuffs
-    WEAKNESS = "weakness"  # reduces physical attack
+    WEAKEN = "weaken"  # reduces physical attack
     FATIGUE = "fatigue"  # reduces magical attack
+    VULNERABLE = "vulnerable"  # reduces physical defense
+    SUSEPTIBLE = "susceptible"  # reduces magical defense
     SLOW = "slow"  # reduces speed
     BLIND = "blind"  # reduces accuracy
     CRIPPLED = "crippled"  # reduces dodge 
     FRAILTY = "frailty"  # reduces healing received
     INTIMIDATED = "intimidated"  # reduces critical chance
 
+# TODO: Remove registry if not needed
 def register_effect(effect_type: EffectType) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)

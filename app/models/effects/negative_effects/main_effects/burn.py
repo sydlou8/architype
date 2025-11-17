@@ -1,6 +1,3 @@
-from sqlmodel import Field
-
-from models.entities.base_entity import BaseEntity
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
 from models.enums.effect_type import EffectType
@@ -9,7 +6,7 @@ class Burn(BaseEffect):
     name: str = Field(default=EffectType.BURN.value)
     description: str = Field(default="A negative effect that causes damage over time and reduces physical damage and healing received.")
 
-    def apply(self, entity: BaseEntity, duration: int = 0, tick_value: int = 0) -> None:
+    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
         """Apply the Burn effect to the entity."""
         # Apply burn damage
         effects = []

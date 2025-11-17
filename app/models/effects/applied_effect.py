@@ -19,6 +19,6 @@ class AppliedEffect(SQLModel, ABC):
     duration: int | None = Field(default=None)              # Duration in turns
 
     @abstractmethod
-    def apply(entity: BaseEntity, duration: int = 0, tick_value: int = 0) -> None:
+    def apply(self, duration: int = 0, tick_value: int = 0) -> None:
         '''Apply effect to entity'''
         pass

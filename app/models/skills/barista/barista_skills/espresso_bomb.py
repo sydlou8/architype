@@ -1,8 +1,8 @@
-from models.entities.skills.base_skill import BaseSkill
-from models.entities.enums.effect_type import EffectType
-from models.entities.enums.skills.barista_skills import BaristaSkills
-from models.entities.effects.negative_effects.burn import Burn
-from models.entities.effects.applied_effect import AppliedEffect
+from models.skills.base_skill import BaseSkill
+from models.enums.effect_type import EffectType
+from models.enums.skills.barista_skills import BaristaSkills
+from models.effects.negative_effects.main_effects.burn import Burn
+from models.effects.applied_effect import AppliedEffect
 
 class EspressoBomb(BaseSkill):
     name: str = Field(default=BaristaSkills.ESPRESSO_BOMB.value)
@@ -28,8 +28,7 @@ class EspressoBomb(BaseSkill):
 
         # Apply burn effect to the target
         burn = Burn()
-        burn_effects: list[AppliedEffect] = burn.apply(
-            entity=target, 
+        burn_effects: list[AppliedEffect] = burn.generate_effects(
             duration=self.BURN_DURATION, 
             tick_value=self.BURN_TICK_DAMAGE
         )

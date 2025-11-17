@@ -4,8 +4,8 @@ from sqlmodel import SQLModel, Field
 from uuid import UUID, uuid4
 
 from models.entities.base_entity import BaseEntity
-from models.entities.abilities.base_ability import BaseAbility
-from models.entities.enums.skill_types import SkillType
+from models.abilities.base_ability import BaseAbility
+from models.enums.skill_types import SkillType
 
 class BaseSkill(SQLModel, ABC):
     id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)

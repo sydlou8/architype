@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import Any, Callable
-from models.entities.enums.skills.barista_skills import BaristaSkills
+from models.enums.skills.barista_skills import BaristaSkills
 
 barista_skills = {}
 
