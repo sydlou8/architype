@@ -8,7 +8,7 @@ class Fortify(BaseEffect):
     name: str = Field(default=SideEffects.FORTIFY.value)
     description: str = Field(default="A positive effect that increases magic defense.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Fortify effect to the entity."""
 
         effects = []
@@ -16,7 +16,7 @@ class Fortify(BaseEffect):
             effect_name=SideEffects.FORTIFY.value,
             description="Doubles magical defense.",
             target=StatType.MAGICAL_DEFENSE,
-            magnitude=self.BUFF_MULTIPLIER,
+            stat_magnifier=self.BUFF_MULTIPLIER,
             duration=duration
         ))
 

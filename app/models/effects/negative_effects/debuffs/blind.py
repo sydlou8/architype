@@ -17,7 +17,7 @@ class Blind(BaseEffect):
             effect_name=SideEffects.BLIND.value,
             description="Halves accuracy.",
             target=StatType.ACCURACY,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

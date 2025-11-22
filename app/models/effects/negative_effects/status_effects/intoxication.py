@@ -3,7 +3,7 @@ from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
 from models.enums.effect_types import MainEffects
-from models.effects.negative_effects.main_effects.poison import Poison
+from models.effects.negative_effects.status_effects.poison import Poison
 from models.effects.negative_effects.debuffs.daze import Daze
 
 class Intoxication(BaseEffect):

@@ -3,7 +3,7 @@ from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
 from models.enums.effect_types import MainEffects
 from models.effects.positive_effects.buffs.strengthen import Strengthen
-from models.effects.negative_effects.main_effects.confusion import Confusion
+from models.effects.negative_effects.status_effects.confusion import Confusion
 from models.effects.negative_effects.debuffs.weakness import Weakness
 from models.effects.negative_effects.debuffs.frailty import Frailty
 

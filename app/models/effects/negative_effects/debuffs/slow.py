@@ -17,7 +17,7 @@ class Slow(BaseEffect):
             effect_name=SideEffects.SLOW.value,
             description="Halves speed.",
             target=StatType.SPEED,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

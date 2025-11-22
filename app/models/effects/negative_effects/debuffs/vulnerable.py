@@ -17,7 +17,7 @@ class Vulnerable(BaseEffect):
             effect_name=SideEffects.VULNERABLE.value,
             description="Halves physical defense.",
             target=StatType.PHYSICAL_DEFENSE,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

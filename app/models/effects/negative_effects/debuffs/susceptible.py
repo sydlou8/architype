@@ -17,7 +17,7 @@ class Susceptible(BaseEffect):
             effect_name=SideEffects.SUSCEPTIBLE.value,
             description="Halves magical defense.",
             target=StatType.MAGICAL_DEFENSE,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

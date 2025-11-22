@@ -6,8 +6,8 @@ from models.enums.skill_types import SkillType
 from models.effects.positive_effects.buffs.agility import Agility
 from models.effects.mixed_effects.rage import Rage
 
-class GenderExpression(BaseSkill):
-    name: str = Field(default=BaristaSkills.GENDER_EXPRESSION.value)
+class GenderEspressoN(BaseSkill):
+    name: str = Field(default=BaristaSkills.GENDER_ESPRESSO_N.value)
     description: str = Field(default="A skill that a chance to cause enemy confusion and rage for 3 turns, and increases self dodge.")
 
     EFFECT_DURATION: int = 3

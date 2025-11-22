@@ -17,7 +17,7 @@ class Fatigue(BaseEffect):
             effect_name=SideEffects.FATIGUE.value,
             description="Halves magical attack.",
             target=StatType.MAGICAL_ATTACK,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

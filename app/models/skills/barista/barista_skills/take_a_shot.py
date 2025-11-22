@@ -4,7 +4,7 @@ from models.entities.base_entity import BaseEntity
 from models.enums.skills.barista_skills import BaristaSkills
 from models.enums.skill_types import SkillType
 from models.enums.effect_types import EffectType
-from models.effects.positive_effects.main_effects.focus import Focus
+from models.effects.positive_effects.status_effects.focus import Focus
 from models.effects.positive_effects.buffs.strengthen import Strengthen
 from models.effects.positive_effects.buffs.haste import Haste
 from models.effects.positive_effects.buffs.agility import Agility

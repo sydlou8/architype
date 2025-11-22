@@ -17,7 +17,7 @@ class Weaken(BaseEffect):
             effect_name=SideEffects.WEAKEN.value,
             description="Halves physical attack.",
             target=StatType.PHYSICAL_ATTACK,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

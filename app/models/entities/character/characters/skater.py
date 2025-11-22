@@ -22,8 +22,8 @@ class Skater(Character):
         super().level_up()
         self.max_health += 5
         self.physical_attack += 4
-        self.magical_attack += 4
-        self.physical_defense += 1
+        self.magical_attack += 1
+        self.physical_defense += 4
         self.magical_defense += 1
         self.speed += 5
     

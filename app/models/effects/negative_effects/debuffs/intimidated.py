@@ -17,7 +17,7 @@ class Intimidated(BaseEffect):
             effect_name=SideEffects.INTIMIDATED.value,
             description="Halves critical chance.",
             target=StatType.CRITICAL_CHANCE,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

@@ -8,7 +8,7 @@ class Strengthen(BaseEffect):
     name: str = Field(default=SideEffects.STRENGTHEN.value)
     description: str = Field(default="A positive effect that increases physical damage.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Strengthen effect to the entity."""
 
         effects = []
@@ -16,7 +16,7 @@ class Strengthen(BaseEffect):
             effect_name=SideEffects.STRENGTHEN.value,
             description="Doubles physical attack.",
             target=StatType.PHYSICAL_ATTACK,
-            magnitude=self.BUFF_MULTIPLIER,
+            stat_magnifier=self.BUFF_MULTIPLIER,
             duration=duration
         ))
 

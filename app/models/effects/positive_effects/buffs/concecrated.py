@@ -8,7 +8,7 @@ class Concecrated(BaseEffect):
     name: str = Field(default=SideEffects.CONCECRATED.value)
     description: str = Field(default="A positive effect that increases healing received.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Concecrated effect to the entity."""
 
         effects = []
@@ -16,7 +16,7 @@ class Concecrated(BaseEffect):
             effect_name=SideEffects.CONCECRATED.value,
             description="Doubles healing received.",
             target=StatType.HEALING_MODIFIER,
-            magnitude=self.BUFF_MULTIPLIER,
+            stat_magnifier=self.BUFF_MULTIPLIER,
             duration=duration
         ))
 

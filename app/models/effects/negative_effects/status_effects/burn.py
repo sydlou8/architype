@@ -18,16 +18,16 @@ class Burn(BaseEffect):
         effects.extend(dot_effects)
 
         # Apply debuffs: weakness and frailty
-        # TODO: Adjust for unique effect -- currently stackable --> adjust magnitude after change
+        # TODO: Adjust for unique effect -- currently stackable --> adjust stat_magnifier after change
         # Apply Weaken
         weaken = Weaken()
-        weaken.magnitude = 0.9  
+        weaken.stat_magnifier = 0.9  
         weaken_effects = weaken.generate_effects(duration=duration)
         effects.extend(weaken_effects)
 
         # Apply Frailty
         frailty = Frailty()
-        frailty.magnitude = 0.9
+        frailty.stat_magnifier = 0.9
         frailty_effects = frailty.generate_effects(duration=duration)
         effects.extend(frailty_effects)
 

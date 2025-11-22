@@ -13,12 +13,12 @@ class AppliedEffect(SQLModel, ABC):
 
     target: StatType | None = Field(default=None)
     is_unique_effect: bool = Field(default=False)           # Used for unique buffs/debuffs like stat debuffs from burn, poison, etc
-    magnitude: float | None = Field(default=0.0)            # This can be a float for percentage-based effects
-    tick_magnitude: int | None = Field(default=0)           # This will always be an integer for tick-based effects like damage over time or healing over time
+    stat_magnifier: float | None = Field(default=0.0)            # This can be a float for percentage-based effects
+    
 
     duration: int | None = Field(default=None)              # Duration in turns
 
     @abstractmethod
-    def apply(self, duration: int = 0, tick_value: int = 0) -> None:
+    def apply(self, duration: int = 0) -> None:
         '''Apply effect to entity'''
         pass

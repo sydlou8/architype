@@ -8,7 +8,7 @@ class Concentration(BaseEffect):
     name: str = Field(default=SideEffects.CONCENTRATION.value)
     description: str = Field(default="A positive effect that increases accuracy.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Concentration effect to the entity."""
 
         effects = []
@@ -16,7 +16,7 @@ class Concentration(BaseEffect):
             effect_name=SideEffects.CONCENTRATION.value,
             description="Doubles accuracy.",
             target=StatType.ACCURACY,
-            magnitude=self.BUFF_MULTIPLIER,  
+            stat_magnifier=self.BUFF_MULTIPLIER,  
             duration=duration
         ))
 

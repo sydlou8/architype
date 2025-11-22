@@ -1,8 +1,4 @@
-from typing import Any
 from sqlmodel import Field
-
-from models.skills.base_skill import Skill
-from models.entities.base_entity import BaseEntity
 from models.entities.character.character import Character
 from models.enums.character_classes import CharacterClasses
 

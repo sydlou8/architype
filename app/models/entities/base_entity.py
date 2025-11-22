@@ -33,7 +33,13 @@ class BaseEntity(SQLModel, ABC):
     critical_chance: float = Field(default=0.1)  # 10% critical hit chance
     healing_modifier: float = Field(default=1)  # Normal healing
     final_damage_modifier: float = Field(default=1)  # Overall damage modifier
-    
+
+    # Effect resist modifiers
+    burn_resist: float = Field(default=0.2)
+    poison_resist: float = Field(default=0.2)
+    stun_resist: float = Field(default=0.2)
+    curse_resist: float = Field(default=0.2)
+
     # Constant multipliers Not a field
     NORMAL_MULTIPLIER: float = 1.0  # 100% damage
     CRITICAL_MULTIPLIER: float = 1.5  # 150% damage

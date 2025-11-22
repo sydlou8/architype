@@ -19,16 +19,16 @@ class Poison(BaseEffect):
         effects.extend(dot_effects)
 
         # Apply debuffs: fatigue and vulnerable
-        # TODO: Adjust for unique effect -- currently stackable --> adjust magnitude after change
+        # TODO: Adjust for unique effect -- currently stackable --> adjust stat_magnifier after change
         # Apply Fatigue
         fatigue = Fatigue()
-        fatigue.magnitude = 0.9
+        fatigue.stat_magnifier = 0.9
         fatigue_effects = fatigue.generate_effects(duration=duration)
         effects.extend(fatigue_effects)
 
         # Apply Vulnerable
         vulnerable = Vulnerable()
-        vulnerable.magnitude = 0.9
+        vulnerable.stat_magnifier = 0.9
         vulnerable_effects = vulnerable.generate_effects(duration=duration)
         effects.extend(vulnerable_effects)
         

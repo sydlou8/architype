@@ -17,7 +17,7 @@ class Crippled(BaseEffect):
             effect_name=SideEffects.CRIPPLED.value,
             description="Halves dodge chance.",
             target=StatType.DODGE,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

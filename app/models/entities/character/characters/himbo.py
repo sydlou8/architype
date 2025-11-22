@@ -16,9 +16,9 @@ class Himbo(Character):
     def level_up(self) -> None:
         """Level up the Himbo character, increasing stats accordingly."""
         super().level_up()
-        self.max_health += 12
-        self.physical_attack += 3
+        self.max_health += 8
+        self.physical_attack += 5
         self.magical_attack += 0
-        self.physical_defense += 2
+        self.physical_defense += 4
         self.magical_defense += 1
         self.speed += 2

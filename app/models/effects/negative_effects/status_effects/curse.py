@@ -20,12 +20,12 @@ class Curse(BaseEffect):
 
         # Apply debuffs: weaken and fatigue
         weaken = Weaken()
-        weaken.magnitude = 0.9
+        weaken.stat_magnifier = 0.9
         weaken_effects = weaken.generate_effects(duration=duration)
         effects.extend(weaken_effects)
 
         fatigue = Fatigue()
-        fatigue.magnitude = 0.9
+        fatigue.stat_magnifier = 0.9
         fatigue_effects = fatigue.generate_effects(duration=duration)
         effects.extend(fatigue_effects)
 

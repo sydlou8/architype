@@ -1,3 +1,6 @@
+# A ranged offensive skill that fires two quick shots at the target. 50% chance to burn the target for 3 damage for 3 turns.
+# multi hit attack
+# single target ranged damage skill
 from sqlmodel import Field
 from models.skills.base_skill import BaseSkill
 from models.entities.base_entity import BaseEntity
@@ -32,7 +35,7 @@ class DoubleShot(BaseSkill):
         # Apply burn effect to the target based on chance
         import random
         if random.random() < self.BURN_CHANCE:
-            from models.effects.negative_effects.main_effects.burn import Burn
+            from models.effects.negative_effects.status_effects.burn import Burn
             from models.effects.applied_effect import AppliedEffect
 
             burn = Burn()

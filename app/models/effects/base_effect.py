@@ -21,8 +21,9 @@ class BaseEffect(SQLModel, ABC):
         self.duration = duration
         self.is_unique_effect = is_unique_effect
 
+    # override abstract method signature in extending classes to include tick_value or movement_distance as needed
     @abstractmethod
-    def generate_effects(self, entity: BaseEntity, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, entity: BaseEntity) -> list[AppliedEffect]:
         """
         Generate the effects to be applied to the entity.
         Parameters:

@@ -1,4 +1,6 @@
+from sqlmodel import Field
 from models.entities.character.character import Character
+from models.enums.character_classes import CharacterClasses
 
 class Bartender(Character):
     role: str = Field(default=CharacterClasses.BARTENDER.value)

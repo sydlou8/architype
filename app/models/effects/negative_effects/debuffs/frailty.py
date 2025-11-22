@@ -17,7 +17,7 @@ class Frailty(BaseEffect):
             effect_name=SideEffects.FRAILITY.value,
             description="Halves healing received.",
             target=StatType.HEALING_MODIFIER,
-            magnitude=self.DEBUFF_MULTIPLIER,
+            stat_magnifier=self.DEBUFF_MULTIPLIER,
             duration=duration
         ))
 

@@ -8,7 +8,7 @@ class Haste(BaseEffect):
     name: str = Field(default=SideEffects.HASTE.value)
     description: str = Field(default="A positive effect that increases speed.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Haste effect to the entity."""
 
         effects = []
@@ -16,7 +16,7 @@ class Haste(BaseEffect):
             effect_name=SideEffects.HASTE.value,
             description="Doubles speed.",
             target=StatType.SPEED,
-            magnitude=self.BUFF_MULTIPLIER,
+            stat_magnifier=self.BUFF_MULTIPLIER,
             duration=duration
         ))
 

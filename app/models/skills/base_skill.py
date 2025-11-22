@@ -17,7 +17,6 @@ class BaseSkill(SQLModel, ABC):
     level: int = Field(default=1)
 
     cooldown: int = Field(default=0)  # Number of turns before the skill can be used again
-    current_cooldown: int = Field(default=0)  # Tracks the remaining cooldown
 
     accuracy: float = Field(default=1)  # Represents the chance of successfully hitting the target
     power: int = Field(default=0)  # Represents the skill's power or effectiveness

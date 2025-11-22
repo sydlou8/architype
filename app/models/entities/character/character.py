@@ -57,7 +57,7 @@ class Character(BaseEntity, ABC):
             description="Increases defense for one turn.",
             target=StatType.PHYSICAL_DEFENSE,
             is_unique_effect=True,
-            magnitude=5.0,
+            stat_magnifier=5.0,
             duration=1
         )
         self.add_effect(applied_effect)

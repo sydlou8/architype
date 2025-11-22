@@ -8,7 +8,7 @@ class Defender(BaseEffect):
     name: str = Field(default=SideEffects.DEFENDER.value)
     description: str = Field(default="A positive effect that increases physical defense.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Defender effect to the entity."""
 
         effects = []
@@ -16,7 +16,7 @@ class Defender(BaseEffect):
             effect_name=SideEffects.DEFENDER.value,
             description="Doubles physical defense.",
             target=StatType.PHYSICAL_DEFENSE,
-            magnitude=self.BUFF_MULTIPLIER,
+            stat_magnifier=self.BUFF_MULTIPLIER,
             duration=duration
         ))
 
