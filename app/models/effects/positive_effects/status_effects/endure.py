@@ -2,12 +2,12 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 from models.positive_effects.buffs.defender import Defender
 from models.positive_effects.buffs.fortify import Fortify
 
 class Endure(BaseEffect):
-    name: str = Field(default=MainEffects.ENDURE.value)
+    name: str = Field(default=StatusEffects.ENDURE.value)
     description: str = Field(default="A positive effect that increases physical defense and magic defense, and blocks damage over time effects.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:

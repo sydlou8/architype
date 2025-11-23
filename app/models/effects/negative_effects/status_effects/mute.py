@@ -2,10 +2,10 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 
 class Mute(BaseEffect):
-    name: str = Field(default=MainEffects.MUTE.value)
+    name: str = Field(default=StatusEffects.MUTE.value)
     description: str = Field(default="A negative effect that prevents the affected entity from using magical skills for a duration.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
@@ -13,7 +13,7 @@ class Mute(BaseEffect):
 
         effects = []
         effects.append(AppliedEffect(
-            effect_name=MainEffects.MUTE.value,
+            effect_name=StatusEffects.MUTE.value,
             description="Prevents the use of magical skills.",
             duration=duration
         ))

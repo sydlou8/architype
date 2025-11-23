@@ -1,0 +1,1 @@
+# skills can be chosen by user, abilities are randomized upon character creation

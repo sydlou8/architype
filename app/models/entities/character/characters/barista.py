@@ -3,7 +3,13 @@ from models.entities.character.character import Character
 from models.enums.character_classes import CharacterClasses
 
 class Barista(Character):
+    DESC = """
+    Masters of caffeinated concoctions, Baristas energize their allies and debilitate foes with potent brews.
+    High speed and dodge -- mixed attacker with a physical attack focus. Strong use of burn debuffs.
+    """
+
     role: str = Field(default=CharacterClasses.BARISTA.value)
+    description: str = Field(default=DESC.strip())
 
     # Override Basic Attributes
     max_health: int = Field(default=80)

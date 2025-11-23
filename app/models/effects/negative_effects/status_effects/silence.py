@@ -2,10 +2,10 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 
 class Silence(BaseEffect):
-    name: str = Field(default=MainEffects.SILENCE.value)
+    name: str = Field(default=StatusEffects.SILENCE.value)
     description: str = Field(default="A negative effect that prevents the affected entity from using all skills for a duration.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
@@ -13,7 +13,7 @@ class Silence(BaseEffect):
 
         effects = []
         effects.append(AppliedEffect(
-            effect_name=MainEffects.SILENCE.value,
+            effect_name=StatusEffects.SILENCE.value,
             description="Prevents the use of all skills.",
             duration=duration
         ))

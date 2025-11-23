@@ -7,6 +7,7 @@ from functools import wraps
 from models.skills.base_skill import BaseSkill
 from models.effects.base_effect import Effect
 from models.effects.applied_effect import AppliedEffect
+from models.abilities.base_ability import BaseAbility
 from models.enums.stat_types import StatType, register_stat, stats_registry 
 
 class BaseEntity(SQLModel, ABC):
@@ -19,6 +20,7 @@ class BaseEntity(SQLModel, ABC):
     level: int = Field(default=1)
     is_alive: bool | None = None
     active_effects: list[AppliedEffect] = Field(default_factory=list)
+    ability: BaseAbility | None = None
 
     # Combat stats
     physical_attack: int = Field(default=10)

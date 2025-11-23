@@ -2,12 +2,12 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 from models.positive_effects.buffs.fortify import Fortify
 from models.positive_effects.buffs.wisdom import Wisdom
 
 class Enchanted(BaseEffect):
-    name: str = Field(default=MainEffects.ENCHANTED.value)
+    name: str = Field(default=StatusEffects.ENCHANTED.value)
     description: str = Field(default="A positive effect that increases magic damage and defense.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:

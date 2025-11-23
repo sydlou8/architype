@@ -2,12 +2,12 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 from models.effects.negative_effects.status_effects.poison import Poison
 from models.effects.negative_effects.debuffs.daze import Daze
 
 class Intoxication(BaseEffect):
-    name: str = Field(default=MainEffects.INTOXICATION.value)
+    name: str = Field(default=StatusEffects.INTOXICATION.value)
     description: str = Field(default="A negative effect that applies poison and daze.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:

@@ -15,6 +15,7 @@ class BaseOverTimeEffect(BaseEffect):
     def generate_effects(self, entity: BaseEntity, tick_value: int = 0) -> list[AppliedOverTimeEffect]:
         """
         Generate the effects to be applied to the entity for over-time effects.
+        These skills are applied then take effect at the beginning of each turn for the duration of the effect.
         
         Parameters:
             entity (BaseEntity): The entity to which the effect is applied.

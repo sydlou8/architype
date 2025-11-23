@@ -2,7 +2,7 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import EffectType, MainEffects, SideEffects
+from models.enums.effect_types import EffectType, StatusEffects, ModifierEffects
 from models.enums.stat_types import StatType
 from models.effects.positive_effects.buffs.strengthen import Strengthen
 from models.effects.positive_effects.buffs.wisdom import Wisdom
@@ -13,7 +13,7 @@ from models.effects.negative_effects.debuffs.frailty import Frailty
 from models.effects.negative_effects.debuffs.blind import Blind
 
 class Hyped(BaseEffect):
-    name: str = Field(default=MainEffects.HYPED.value)
+    name: str = Field(default=StatusEffects.HYPED.value)
     description: str = Field(default="A mixed effect that applies strengthen, wisdom, defender, fortify and haste, but also applies frailty and blind.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:

@@ -2,13 +2,13 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 from models.effects.negative_effects.debuffs.fatigue import Fatigue
 from models.effects.negative_effects.debuffs.vulnerable import Vulnerable
 from models.effects.over_time_effects.dot import DoT
 
 class Poison(BaseEffect):
-    name: str = Field(default=MainEffects.POISON.value)
+    name: str = Field(default=StatusEffects.POISON.value)
     description: str = Field(default="A negative effect that causes damage over time and applies fatigue and vulnerable.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:

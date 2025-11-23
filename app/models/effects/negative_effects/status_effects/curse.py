@@ -2,13 +2,13 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 from models.effects.negative_effects.debuffs.weaken import Weaken
 from models.effects.negative_effects.debuffs.fatigue import Fatigue
 from models.effects.over_time_effects.dot import DoT
 
 class Curse(BaseEffect):
-    name: str = Field(default=MainEffects.CURSE.value)
+    name: str = Field(default=StatusEffects.CURSE.value)
     description: str = Field(default="A negative effect that causes damage over time and applies weaken and fatigue.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:

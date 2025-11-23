@@ -1,13 +1,13 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 from models.effects.negative_effects.debuffs.weaken import Weaken
 from models.effects.negative_effects.debuffs.frailty import Frailty
 from models.effects.over_time_effects.dot import DoT
 
 class Burn(BaseEffect):
-    name: str = Field(default=MainEffects.BURN.value)
+    name: str = Field(default=StatusEffects.BURN.value)
     description: str = Field(default="A negative effect that causes damage over time and applies weaken and frailty.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:

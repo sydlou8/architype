@@ -7,11 +7,11 @@ effect_registry = {}
 class EffectType(Enum):
     pass
 
-class OverTimeEffect(EffectType):
+class OverTimeEffects(EffectType):
     HEALING = "healing"             # healing over time effect
     DAMAGE = "damage"               # damage over time effect
 
-class MainEffects(EffectType):
+class StatusEffects(EffectType):
     # Positive Effects
     BULKED = "bulked"               # applies strengthen and defender for a duration
     EMPOWERED = "empowered"         # applies strengthen and wisdom for a duration
@@ -41,7 +41,7 @@ class MainEffects(EffectType):
     MUTE = "mute"                   # prevents the use of magical skills for duration
     ROOT = "root"                   # prevents the affected entity from using physical skills for duration
 
-class SideEffects(EffectType):
+class ModifierEffects(EffectType):
     # Buffs
     STRENGTHEN = "strengthen"       # increases physical attack
     WISDOM = "wisdom"               # increases magical attack

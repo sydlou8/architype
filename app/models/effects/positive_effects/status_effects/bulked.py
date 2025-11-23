@@ -2,12 +2,12 @@
 from sqlmodel import Field
 from models.effects.base_effect import BaseEffect
 from models.effects.applied_effect import AppliedEffect
-from models.enums.effect_types import MainEffects
+from models.enums.effect_types import StatusEffects
 from models.positive_effects.buffs.strengthen import Strengthen
 from models.positive_effects.buffs.defender import Defender
 
 class Bulked(BaseEffect):
-    name: str = Field(default=MainEffects.BULKED.value)
+    name: str = Field(default=StatusEffects.BULKED.value)
     description: str = Field(default="A positive effect that increases physical damage and defense.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
