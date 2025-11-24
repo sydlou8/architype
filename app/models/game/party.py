@@ -2,6 +2,8 @@
 # if a party of characters, all character classes should be unique
 # if a party of enemies, enemies can be duplicated
 
+from pydantic import BaseModel, Field
+from app.models.game.character import Character
 
 class Party(BaseModel):
     members: list[Character] = Field(default_factory=list)
@@ -11,7 +13,12 @@ class Party(BaseModel):
 
     # -------------------------------- Methods --------------------------------
     # Logic held in service layer, this is just a data model that holds party members
-
+    def add_saved_party(self, default_members: list[Character]) -> None:
+        """Add default members to the party."""
+        if len(self.members) + len(default_members) > self.MAX_PARTY_SIZE:
+            self.clear_party()
+        self.members.extend(default_members)
+    
     def add_member(self, character: Character) -> None:
         """Add a character to the party. """
         self.members.append(character)
