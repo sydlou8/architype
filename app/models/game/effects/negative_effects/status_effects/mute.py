@@ -8,7 +8,7 @@ class Mute(BaseEffect):
     name: str = Field(default=StatusEffects.MUTE.value)
     description: str = Field(default="A negative effect that prevents the affected entity from using magical skills for a duration.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Mute effect to the entity."""
 
         effects = []

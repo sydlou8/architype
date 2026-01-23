@@ -12,15 +12,17 @@ class DoubleShot(BaseSkill):
     name: str = Field(default=BaristaSkills.DOUBLE_SHOT.value)
     skill_type: str = Field(default=SkillType.OFFENSIVE.value)
     description: str = Field(default="A ranged offensive skill that fires two quick shots at the target. 50% chance to burn the target for 3 damage for 3 turns.")
+    cooldown: int = Field(default=2)
+    power: int = Field(default=30)  
+    is_multi_hit: bool = Field(default=True)    # Hits 2 times
 
-    power: int = Field(default=30)  # Example power value
+    # ----------------------------------- CONSTANTS -----------------------------------
+    HIT_QUANTITY: int = 2                       # Hits 2 times
+    BURN_DURATION: int = 3                      # Burn lasts for 3 turns
+    BURN_TICK_DAMAGE: int = 3                   # Burn deals 3 damage per turn
+    BURN_CHANCE: float = 0.5                    # 50% chance to apply burn
 
-    is_multi_hit: bool = Field(default=True)  # Hits 2 times
-
-    BURN_DURATION: int = 3  # Burn lasts for 3 turns
-    BURN_TICK_DAMAGE: int = 3  # Burn deals 3 damage per turn
-    BURN_CHANCE: float = 0.5  # 50% chance to apply burn
-
+    # -------------------------------- OVERRIDE METHOD --------------------------------
     def use(self, user: BaseEntity, target: BaseEntity) -> int:
         """
         Use the Double Shot skill on a target -- applying additional effects and calculates base skill damage.

@@ -2,7 +2,7 @@
 from sqlmodel import SqlModel, Field, Relationship
 from typing import Any
 from uuid import UUID, uuid4
-from models.game.character import Character
+from models.game.entities.character.character import Character
 
 class CharacterCollection(SqlModel, table=True):
     """CharacterCollection model representing a collection of characters owned by a user."""

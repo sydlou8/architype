@@ -10,7 +10,6 @@ class BaseEffect(SQLModel, ABC):
 
     name: str | None = Field(default=None)
     description: str | None = Field(default=None)
-    duration: int | None = Field(default=None)  # Duration in turns
     is_unique_effect: bool = Field(default=False)  # Whether the effect is unique (non-stackable)
 
     BUFF_MULTIPLIER: float = 2.0
@@ -23,7 +22,7 @@ class BaseEffect(SQLModel, ABC):
 
     # override abstract method signature in extending classes to include tick_value or movement_distance as needed
     @abstractmethod
-    def generate_effects(self, entity: BaseEntity) -> list[AppliedEffect]:
+    def generate_effects(self, effect_duration: int = 0) -> list[AppliedEffect]:
         """
         Generate the effects to be applied to the entity.
         Parameters:

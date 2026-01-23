@@ -6,6 +6,8 @@ from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.barista_skills import BaristaSkills
 from models.game.enums.skill_types import SkillType
 
+from models.game.effects.negative_effects.status_effects import Stun
+
 class SconeWall(BaseSkill):
     name: str = Field(default=BaristaSkills.SCONE_WALL.value)
     skill_type: str = Field(default=SkillType.OFFENSIVE.value)
@@ -17,6 +19,6 @@ class SconeWall(BaseSkill):
         """Use the Scone Wall skill on a target."""
         # Calculate damage
         damage = self.calculate_base_damage(user, target, StatType.PHYSICAL_ATTACK, StatType.PHYSICAL_DEFENSE)
-        
+        stun = Stun()
         # Apply damage to target
         target.current_hp -= damage

@@ -10,7 +10,7 @@ class Endure(BaseEffect):
     name: str = Field(default=StatusEffects.ENDURE.value)
     description: str = Field(default="A positive effect that increases physical defense and magic defense, and blocks damage over time effects.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Endure effect to the entity."""
 
         effects = []

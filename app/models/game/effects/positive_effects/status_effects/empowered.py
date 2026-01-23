@@ -10,7 +10,7 @@ class Empowered(BaseEffect):
     name: str = Field(default=StatusEffects.EMPOWERED.value)
     description: str = Field(default="A positive effect that increases physical and magic damage.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Empowered effect to the entity."""
 
         effects = []

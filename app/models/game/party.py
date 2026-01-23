@@ -3,7 +3,7 @@
 # if a party of enemies, enemies can be duplicated
 
 from pydantic import BaseModel, Field
-from app.models.game.character import Character
+from models.game.entities.character.character import Character
 
 class Party(BaseModel):
     members: list[Character] = Field(default_factory=list)

@@ -10,7 +10,7 @@ class Daze(BaseEffect):
     name: str = Field(default=StatusEffects.DAZE.value)
     description: str = Field(default="A negative effect that applies blind and slow.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Daze effect to the entity."""
 
         effects = []

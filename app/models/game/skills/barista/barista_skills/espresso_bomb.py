@@ -12,7 +12,7 @@ class EspressoBomb(BaseSkill):
     name: str = Field(default=BaristaSkills.ESPRESSO_BOMB.value)
     skill_type: str = Field(default=SkillType.OFFENSIVE.value)
     description: str = Field(default="An area damage skill that deals physical damage and causes burn for 5 turns.")
-
+    cooldown: int = Field(default=3)
     power: int = Field(default=50)  # Example power value
 
     is_multi_target: bool = Field(default=True)  # Affects multiple targets

@@ -10,7 +10,7 @@ class Bulked(BaseEffect):
     name: str = Field(default=StatusEffects.BULKED.value)
     description: str = Field(default="A positive effect that increases physical damage and defense.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Bulked effect to the entity."""
 
         effects = []

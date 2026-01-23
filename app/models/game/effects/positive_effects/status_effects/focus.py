@@ -10,7 +10,7 @@ class Focus(BaseEffect):
     name: str = Field(default=StatusEffects.FOCUS.value)
     description: str = Field(default="A positive effect that applies concentration and pierce.")
 
-    def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
+    def generate_effects(self, duration: int = 0) -> list[AppliedEffect]:
         """Generate the Focus effect to the entity."""
 
         effects = []
