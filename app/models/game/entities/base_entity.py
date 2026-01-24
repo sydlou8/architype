@@ -1,13 +1,15 @@
 from abc import ABC, abstractmethod
-from typing import Any, Callable
+from typing import Any, Callable, TYPE_CHECKING
 from sqlmodel import SQLModel, Field
 from uuid import UUID, uuid4
 from functools import wraps
 
-from models.game.skills.base_skill import BaseSkill
-from models.game.effects.base_effect import Effect
+if TYPE_CHECKING:
+    from models.game.skills.base_skill import BaseSkill
+    from models.game.effects.base_effect import Effect
+    from models.game.abilities.base_ability import BaseAbility
+
 from models.game.effects.applied_effect import AppliedEffect
-from models.game.abilities.base_ability import BaseAbility
 from models.game.enums.stat_types import StatType, register_stat, stats_registry 
 
 class BaseEntity(SQLModel, ABC):
@@ -20,7 +22,7 @@ class BaseEntity(SQLModel, ABC):
     level: int = Field(default=1)
     is_alive: bool | None = None
     active_effects: list[AppliedEffect] = Field(default_factory=list)
-    ability: BaseAbility | None = None
+    # ability: "BaseAbility | None" = None  # Disabled for now to avoid circular import
 
     # Combat stats
     physical_attack: int = Field(default=10)
@@ -54,12 +56,8 @@ class BaseEntity(SQLModel, ABC):
         self.is_alive = self.check_alive()
 
     # ----------------------- CURRENT STAT METHODS -----------------------
+    # Note: current_health is a regular field, not a property, as it needs to be mutable
     
-    @property
-    @register_stat(StatType.HEALTH)
-    def current_health(self) -> int:
-        return self.max_health 
-
     @property
     @register_stat(StatType.PHYSICAL_ATTACK)
     def current_physical_attack(self) -> int:
@@ -145,7 +143,7 @@ class BaseEntity(SQLModel, ABC):
         pass
 
     @abstractmethod
-    def attack(self, skill: BaseSkill, target: BaseEntity) -> None:
+    def attack(self, skill: "BaseSkill", target: "BaseEntity") -> None:
         """Perform an attack on another entity."""
         # Implementation will vary based on entity type
         pass
@@ -180,13 +178,13 @@ class BaseEntity(SQLModel, ABC):
     
     def get_final_damage_multiplier(self, base_stat: StatType) -> float:
         """Calculate the final damage multiplier based on critical hits and effects."""
-        multiplier = self.current_final_damage_modifier()
-        return self.calculate_effect_multiplier(self, base_stat, multiplier)
+        multiplier = self.current_final_damage_modifier  # Property, not a function
+        return self.calculate_effect_multiplier(base_stat, multiplier)
     
     def get_final_healing_multiplier(self) -> float:
         """Calculate the final healing multiplier based on effects."""
-        multiplier = self.current_healing_modifier
-        return self.calculate_effect_multiplier(self, base_stat, multiplier)
+        multiplier = self.current_healing_modifier  # Property, not a function
+        return self.calculate_effect_multiplier(StatType.HEALING_MODIFIER, multiplier)
 
     def calculate_effect_multiplier(self, base_stat: StatType, multiplier: float) -> float:
         unique_effect_detected = False
@@ -202,7 +200,7 @@ class BaseEntity(SQLModel, ABC):
         """Add a status effect to the entity."""
         self.active_effects.append(effect)
     
-    def apply_effects(self, effect: BaseEffect, duration: int) -> None:
+    def apply_effects(self, effect: "Effect", duration: int) -> None:
         """Apply effects to the entity."""
         # Implementation for applying effects can be added here
         effects = effect.generate_effects(self)
@@ -223,7 +221,7 @@ class BaseEntity(SQLModel, ABC):
     
     def resolve_effects(self) -> None:
         """Resolve all active effects on the entity."""
-        for effect in list(self.active_effects.values()):
+        for effect in list(self.active_effects):
             effect.resolve()
             if effect.duration <= 0:
                 self.active_effects.remove(effect)

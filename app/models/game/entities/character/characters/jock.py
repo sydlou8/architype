@@ -1,10 +1,11 @@
 from sqlmodel import Field
+from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
 
 class Jock(Character):
-    """
+    DESC: ClassVar[str] = """
     The Jock class excels in physical combat and endurance, making them formidable opponents in battle.
     They have a high dodge and critical hit chance, allowing them to avoid attacks and deal significant damage.
     """

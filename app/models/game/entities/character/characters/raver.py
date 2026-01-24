@@ -1,10 +1,11 @@
 from sqlmodel import Field
+from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
 
 class Raver(Character):
-    DESC = """
+    DESC: ClassVar[str] = """
     The Raver class is known for their high energy and agility, making them elusive targets in combat.
     They possess a balanced mix of physical and magical abilities, allowing them to adapt to various combat situations, however, 
     they focus more on physical attacks. Their high dodge rate makes them difficult to hit.

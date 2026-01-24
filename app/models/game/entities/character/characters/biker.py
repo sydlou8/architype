@@ -1,10 +1,11 @@
 from sqlmodel import Field
+from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
 
 class Biker(Character):
-    DESC = """
+    DESC: ClassVar[str] = """
     A tough biker who relies on brute strength and resilience.
     She excels in physical combat and can take a lot of damage.
     """

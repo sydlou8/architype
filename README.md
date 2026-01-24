@@ -29,6 +29,9 @@ Some of the different deisgn patterns I used included:
 - [Builder Pattern (working on it)](#builder-pattern)
 - [Data Transfer Object (DTO) Pattern](#dto-pattern)
 #### Registry Pattern
+The `Registry Pattern` is a structural design pattern used to centralize the management of shared objects or service instances within an application. It acts as a central repository/dictionary where objects are stored, registered, and retrieved using unique identifiers.
+
+In this project
 #### Decorator Pattern
 #### Factory Pattern
 #### Template Method Pattern
@@ -38,3 +41,12 @@ Some of the different deisgn patterns I used included:
 #### Enum Pattern
 #### Builder Pattern
 #### DTO Pattern 
+
+## Milestones
+### Milestone 1: Run as API
+### Milestone 2: Authenticiation/Authorization
+### Milestone 3: Additional Skills and Effects
+### Milestone 4: Party/Character Selection
+### Milestone 5: Testing
+### Milestone 6: Additional Abilities, Skills, and Effects
+### Milestone 7: Mini Frontend

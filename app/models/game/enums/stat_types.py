@@ -15,12 +15,13 @@ class StatType(Enum):
     ACCURACY = auto()
     CRITICAL_CHANCE = auto()
     HEALING_MODIFIER = auto()
+    FINAL_DAMAGE_MODIFIER = auto()
 
-def register_stat(self, stat_type: StatType) -> Callable[..., Any]:
+def register_stat(stat_type: StatType) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
         def wrapper(*args, **kwargs) -> int | float:
-            return func(self, *args, **kwargs)
+            return func(*args, **kwargs)
         stats_registry[stat_type] = wrapper
         return wrapper
     return decorator

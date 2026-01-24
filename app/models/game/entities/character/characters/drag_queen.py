@@ -1,10 +1,11 @@
 from sqlmodel import Field
+from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
 
 class DragQueen(Character):
-    DESC = """
+    DESC: ClassVar[str] = """
     A fabulous drag queen who dazzles enemies with charisma and flair.
     She uses her performance skills to gag boot d and charm opponents.
     """

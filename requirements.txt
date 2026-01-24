@@ -4,3 +4,8 @@ uvicorn[standard] # ASGI server and standard utility packages
 sqlmodel
 asyncpg # Asynchronous driver for PostgreSQL
 python-dotenv # To load the .env file
+
+# Authentication
+python-jose[cryptography] # JWT tokens
+passlib[bcrypt] # Password hashing
+python-multipart # For OAuth2 form data

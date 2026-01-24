@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, TYPE_CHECKING
 from sqlmodel import Field
 
 from models.game.entities.base_entity import BaseEntity
@@ -7,6 +7,10 @@ from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.stat_types import StatType
 from models.game.enums.skill_types import SkillType
 from models.game.enums.effect_types import EffectType, effect_registry, register_effect
+
+if TYPE_CHECKING:
+    from models.game.skills.base_skill import BaseSkill
+    from models.game.effects.applied_effect import AppliedEffect
 
 class Character(BaseEntity, ABC):
     role: str | None = None 
@@ -30,7 +34,7 @@ class Character(BaseEntity, ABC):
             "active_effects": list(self.active_effects.keys()),
         }
 
-    def from_dict(self, data: dict[str, Any]) -> Character:
+    def from_dict(self, data: dict[str, Any]) -> "Character":
         self.id = data.get("id", self.id)
         self.level = data.get("level", self.level)
         self.current_health = data.get("current_health", self.current_health)
@@ -47,11 +51,12 @@ class Character(BaseEntity, ABC):
         self.current_experience = 0
         self.max_experience = int(self.max_experience * 1.5)  # Increase required XP for next level
     
-    def attack(self, skill: Skill, target: BaseEntity) -> None:
+    def attack(self, skill: "BaseSkill", target: BaseEntity) -> None:
         damage = skill.use(self, target)
         target.take_damage(damage)
 
     def defend(self) -> None:
+        from models.game.effects.applied_effect import AppliedEffect
         applied_effect = AppliedEffect(
             effect_name=EffectType.DEFEND.value,
             description="Increases defense for one turn.",
@@ -63,7 +68,17 @@ class Character(BaseEntity, ABC):
         self.add_effect(applied_effect)
 
     def take_damage(self, amount: int) -> None:
-        pass  # Implementation of take damage logic
+        """Apply damage to the character."""
+        if amount < 0:
+            amount = 0
+        self.current_health = max(0, self.current_health - amount)
+        self.is_alive = self.check_alive()
     
-    def heal(self, amount: int ) -> None:
-        pass  # Implementation of heal logic
+    def heal(self, amount: int) -> None:
+        """Heal the character."""
+        if amount < 0:
+            amount = 0
+        # Apply healing modifier
+        healing = int(amount * self.current_healing_modifier)
+        self.current_health = min(self.max_health, self.current_health + healing)
+        self.is_alive = self.check_alive()

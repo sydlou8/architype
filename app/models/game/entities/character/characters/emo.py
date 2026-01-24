@@ -1,10 +1,11 @@
 from sqlmodel import Field
+from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
 
 class Emo(Character):
-    DESC = """
+    DESC: ClassVar[str] = """
     The Emo character is introspective and artistic, often expressing deep emotions through music and poetry.
     They have the ability to create curses that can weaken their enemies over time.
     Emo characters excel in magical defense and have balanced attack stats, making them versatile in combat.

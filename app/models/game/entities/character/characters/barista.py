@@ -1,10 +1,11 @@
 from sqlmodel import Field
+from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
 
 class Barista(Character):
-    DESC = """
+    DESC: ClassVar[str] = """
     Masters of caffeinated concoctions, Baristas energize their allies and debilitate foes with potent brews.
     High speed and dodge -- mixed attacker with a physical attack focus. Strong use of burn debuffs.
     """
