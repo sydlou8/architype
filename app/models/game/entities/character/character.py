@@ -81,3 +81,72 @@ class Character(BaseEntity, ABC):
         healing = int(amount * self.current_healing_modifier)
         self.current_health = min(self.max_health, self.current_health + healing)
         self.is_alive = self.check_alive()
+
+    def equip_skill(self, skill_enum, skill_instance: "BaseSkill") -> bool:
+        """
+        Equip a skill to the character's loadout.
+        
+        Args:
+            skill_enum: The enum representing the skill
+            skill_instance: The instantiated skill object
+            
+        Returns:
+            bool: True if skill was equipped successfully, False otherwise
+        """
+        # Check if character already has 4 skills
+        if len(self.skills) >= 4:
+            return False
+        
+        # Get the skill name (enum value) as the key
+        skill_name = skill_enum.value
+        
+        # Check if skill is already equipped
+        if skill_name in self.skills:
+            return False
+        
+        # Equip the skill
+        self.skills[skill_name] = skill_instance
+        return True
+    
+    def unequip_skill(self, skill_name: str) -> bool:
+        """
+        Unequip a skill from the character's loadout.
+        
+        Args:
+            skill_name: The name (enum value) of the skill to remove
+            
+        Returns:
+            bool: True if skill was unequipped successfully, False otherwise
+        """
+        if skill_name not in self.skills:
+            return False
+        
+        del self.skills[skill_name]
+        return True
+    
+    def swap_skill(self, old_skill_name: str, new_skill_enum, new_skill_instance: "BaseSkill") -> bool:
+        """
+        Swap one skill for another atomically.
+        
+        Args:
+            old_skill_name: The name (enum value) of the skill to replace
+            new_skill_enum: The enum representing the new skill
+            new_skill_instance: The instantiated new skill object
+            
+        Returns:
+            bool: True if swap was successful, False otherwise
+        """
+        # Verify old skill exists
+        if old_skill_name not in self.skills:
+            return False
+        
+        new_skill_name = new_skill_enum.value
+        
+        # Check if new skill is already equipped
+        if new_skill_name in self.skills:
+            return False
+        
+        # Perform atomic swap
+        del self.skills[old_skill_name]
+        self.skills[new_skill_name] = new_skill_instance
+        return True

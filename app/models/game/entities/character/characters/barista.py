@@ -3,9 +3,8 @@ from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
-from models.game.skills.barista.barista_skills.take_a_shot import TakeAShot
-from models.game.skills.barista.barista_skills.double_shot import DoubleShot
-from models.game.skills.barista.barista_skills.espresso_bomb import EspressoBomb
+from models.game.enums.skills.barista_skills import BaristaSkills
+from models.game.skills.barista.barista_skill_registry import get_barista_skill
 
 class Barista(Character):
     DESC: ClassVar[str] = """
@@ -35,11 +34,14 @@ class Barista(Character):
         super().model_post_init(__context)
         # Load default skills if none are set
         if not self.skills:
-            self.skills = {
-                "take_a_shot": TakeAShot(),
-                "double_shot": DoubleShot(),
-                "espresso_bomb": EspressoBomb()
-            }
+            default_skills = [
+                BaristaSkills.TAKE_A_SHOT,
+                BaristaSkills.DOUBLE_SHOT,
+                BaristaSkills.ESPRESSO_BOMB
+            ]
+            for skill_enum in default_skills:
+                skill_instance = get_barista_skill(skill_enum)
+                self.equip_skill(skill_enum, skill_instance)
 
     # TODO: Eventually update to allow users to choose skill points allocation
     def level_up(self) -> None:
