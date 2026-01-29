@@ -13,4 +13,5 @@ dist/
 htmlcov/
 uvicorn.log
 API_TESTING.md
+simple_tests/
 test_**.py
