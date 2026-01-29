@@ -1,4 +1,7 @@
+import random
+
 from sqlmodel import Field
+
 from models.game.skills.base_skill import BaseSkill
 from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.barista_skills import BaristaSkills
@@ -20,7 +23,6 @@ class GenderEspressoN(BaseSkill):
         user_effects = agility.generate_effects(duration=self.EFFECT_DURATION)
 
         # 50% chance to apply rage effect
-        import random
         if random.random() < 0.5:
             rage = Rage()
             target_effects = rage.generate_effects(duration=self.EFFECT_DURATION)

@@ -3,14 +3,16 @@ from typing import Any, Callable, TYPE_CHECKING
 from sqlmodel import SQLModel, Field
 from uuid import UUID, uuid4
 from functools import wraps
+import random
+
+from models.game.effects.applied_effect import AppliedEffect
+from models.game.enums.stat_types import StatType, register_stat, stats_registry
+from models.game.effects.applied_over_time_effect import AppliedOverTimeEffect
 
 if TYPE_CHECKING:
     from models.game.skills.base_skill import BaseSkill
     from models.game.effects.base_effect import Effect
     from models.game.abilities.base_ability import BaseAbility
-
-from models.game.effects.applied_effect import AppliedEffect
-from models.game.enums.stat_types import StatType, register_stat, stats_registry 
 
 class BaseEntity(SQLModel, ABC):
     id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
@@ -44,9 +46,12 @@ class BaseEntity(SQLModel, ABC):
     stun_resist: float = Field(default=0.2)
     curse_resist: float = Field(default=0.2)
 
+    # Critical scaling constants
+    BASE_CRITICAL_MULTIPLIER: float = 1.5  # Starting at level 1
+    CRITICAL_MULTIPLIER_SCALING: float = 0.05  # Increase per level
+    
     # Constant multipliers Not a field
     NORMAL_MULTIPLIER: float = 1.0  # 100% damage
-    CRITICAL_MULTIPLIER: float = 1.5  # 150% damage
 
     # ----------------------- DUNDER METHODS -----------------------
     def __init__(self, *args, **kwargs: Any):
@@ -115,11 +120,18 @@ class BaseEntity(SQLModel, ABC):
         return base * multiplier
 
     @property
+    def current_critical_multiplier(self) -> float:
+        """Calculate critical hit multiplier based on level.
+        Scales from 1.5x at level 1 to 2.45x at level 20.
+        Formula: 1.5 + (0.05 × (level - 1))
+        """
+        return self.BASE_CRITICAL_MULTIPLIER + (self.CRITICAL_MULTIPLIER_SCALING * (self.level - 1))
+
+    @property
     @register_stat(StatType.HEALING_MODIFIER)
     def current_healing_modifier(self) -> float:
         base = self.healing_modifier
-        # TODO: Add healing modifier logic and apply any modifiers or effects that affect healing
-        multiplier = 1
+        multiplier = self.calculate_effect_multiplier(StatType.HEALING_MODIFIER, 1.0)
         return base * multiplier
 
     @property
@@ -171,7 +183,6 @@ class BaseEntity(SQLModel, ABC):
     # ----------------------- MULTIPLIERS -----------------------
     def get_critical_hit_multiplier(self) -> float:
         """Calculate the critical hit multiplier."""
-        import random
         if random.random() < self.current_critical_chance:
             return self.CRITICAL_MULTIPLIER
         return self.NORMAL_MULTIPLIER
@@ -187,12 +198,11 @@ class BaseEntity(SQLModel, ABC):
         return self.calculate_effect_multiplier(StatType.HEALING_MODIFIER, multiplier)
 
     def calculate_effect_multiplier(self, base_stat: StatType, multiplier: float) -> float:
-        unique_effect_detected = False
+        """Calculate the effect multiplier for a specific stat, applying all matching effects."""
         for applied_effect in self.active_effects:
-            if applied_effect.stat_target == base_stat:
-                if applied_effect.is_unique_effect and not unique_effect_detected:
-                    multiplier *= applied_effect.get_damage_multiplier()
-                    unique_effect_detected = True
+            if applied_effect.target == base_stat:
+                # Apply the effect's stat magnifier
+                multiplier *= applied_effect.stat_magnifier
         return multiplier
 
     # ----------------------- EFFECT METHODS -----------------------
@@ -207,10 +217,12 @@ class BaseEntity(SQLModel, ABC):
 
     # Get total tick damage from active effects
     def get_total_tick_damage(self) -> int:
+        """Calculate total damage/healing from over-time effects."""
         total_tick_damage = 0
         for effect in self.active_effects:
-            if effect.tick_magnitude:
-                total_tick_damage += effect.tick_magnitude
+            # Check if it's an over-time effect with tick_value
+            if isinstance(effect, AppliedOverTimeEffect) and effect.tick_value:
+                total_tick_damage += effect.tick_value
         return total_tick_damage
 
     def apply_tick_damage(self) -> None:
@@ -220,10 +232,17 @@ class BaseEntity(SQLModel, ABC):
             self.take_damage(total_tick_damage)
     
     def resolve_effects(self) -> None:
-        """Resolve all active effects on the entity."""
+        """Resolve all active effects on the entity by decrementing duration and applying DoT/HoT."""
+        # First, apply tick damage/healing from over-time effects
+        self.apply_tick_damage()
+        
+        # Then decrement duration and remove expired effects
         for effect in list(self.active_effects):
-            effect.resolve()
-            if effect.duration <= 0:
+            # Decrement duration
+            if effect.duration and effect.duration > 0:
+                effect.duration -= 1
+            # Remove expired effects
+            if effect.duration is not None and effect.duration <= 0:
                 self.active_effects.remove(effect)
 
     

@@ -3,6 +3,9 @@ from typing import ClassVar
 from models.game.entities.character.character import Character
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.genders import Genders
+from models.game.skills.barista.barista_skills.take_a_shot import TakeAShot
+from models.game.skills.barista.barista_skills.double_shot import DoubleShot
+from models.game.skills.barista.barista_skills.espresso_bomb import EspressoBomb
 
 class Barista(Character):
     DESC: ClassVar[str] = """
@@ -26,6 +29,17 @@ class Barista(Character):
 
     # Override Combat Modifiers
     dodge: float = Field(default=0.3)  # 30% dodge chance
+
+    def model_post_init(self, __context) -> None:
+        """Initialize Barista with default skills after model creation."""
+        super().model_post_init(__context)
+        # Load default skills if none are set
+        if not self.skills:
+            self.skills = {
+                "take_a_shot": TakeAShot(),
+                "double_shot": DoubleShot(),
+                "espresso_bomb": EspressoBomb()
+            }
 
     # TODO: Eventually update to allow users to choose skill points allocation
     def level_up(self) -> None:

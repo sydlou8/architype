@@ -36,11 +36,26 @@ class BaseSkill(SQLModel, ABC):
         pass
 
     def calculate_base_damage(self, user: BaseEntity, target: BaseEntity, user_attack: StatType, target_defense: StatType) -> int:
-        """Calculate the damage dealt by the skill."""
-        base_damage = 0
-        base_damage += ((self.power/100) * user.stats_registry[user_attack])
-        target_defense_value = target.stats_registry[target_defense]
-
-        total_base_damage = base_damage - target_defense_value
-
-        return total_base_damage
+        """Calculate the damage dealt by the skill based on attacker's attack stat and target's defense stat."""
+        # Map StatType to the actual property names
+        attack_value = 0
+        defense_value = 0
+        
+        if user_attack == StatType.PHYSICAL_ATTACK:
+            attack_value = user.current_physical_attack
+        elif user_attack == StatType.MAGICAL_ATTACK:
+            attack_value = user.current_magical_attack
+            
+        if target_defense == StatType.PHYSICAL_DEFENSE:
+            defense_value = target.current_physical_defense
+        elif target_defense == StatType.MAGICAL_DEFENSE:
+            defense_value = target.current_magical_defense
+        
+        # Calculate damage using multiplicative mitigation formula:
+        # damage = (skill_power% × attack) × (1 - defense_mitigation)
+        # Defense mitigation caps at 75% to prevent invulnerability
+        defense_mitigation = min(0.75, defense_value / 100)
+        base_damage = (self.power / 100) * attack_value
+        total_damage = int(base_damage * (1 - defense_mitigation))
+        
+        return total_damage

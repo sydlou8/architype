@@ -6,7 +6,7 @@ from models.game.enums.effect_types import EffectType, ModifierEffects
 from models.game.enums.stat_types import StatType
 
 class Frailty(BaseEffect):
-    name: str = Field(default=ModifierEffects.FRAILITY.value)
+    name: str = Field(default=ModifierEffects.FRAILTY.value)
     description: str = Field(default="A negative effect that reduces healing received.")
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
@@ -14,7 +14,7 @@ class Frailty(BaseEffect):
 
         effects = []
         effects.append(AppliedEffect(
-            effect_name=ModifierEffects.FRAILITY.value,
+            effect_name=ModifierEffects.FRAILTY.value,
             description="Halves healing received.",
             target=StatType.HEALING_MODIFIER,
             stat_magnifier=self.DEBUFF_MULTIPLIER,

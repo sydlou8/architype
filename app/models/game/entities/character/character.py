@@ -7,10 +7,10 @@ from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.stat_types import StatType
 from models.game.enums.skill_types import SkillType
 from models.game.enums.effect_types import EffectType, effect_registry, register_effect
+from models.game.effects.applied_effect import AppliedEffect
 
 if TYPE_CHECKING:
     from models.game.skills.base_skill import BaseSkill
-    from models.game.effects.applied_effect import AppliedEffect
 
 class Character(BaseEntity, ABC):
     role: str | None = None 
@@ -56,7 +56,6 @@ class Character(BaseEntity, ABC):
         target.take_damage(damage)
 
     def defend(self) -> None:
-        from models.game.effects.applied_effect import AppliedEffect
         applied_effect = AppliedEffect(
             effect_name=EffectType.DEFEND.value,
             description="Increases defense for one turn.",

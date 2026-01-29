@@ -17,7 +17,7 @@ class DoT(BaseOverTimeEffect):
             effect_name=OverTimeEffects.DAMAGE.value,
             description="Deals damage over time.",
             target=StatType.HEALTH,
-            tick_value=-tick_value,
+            tick_value=tick_value, 
             duration=duration
         ))
 

@@ -12,3 +12,6 @@ def register_barista_skill(skill: BaristaSkills):
     return decorator
 
 @register_barista_skill(BaristaSkills.TAKE_A_SHOT)
+def take_a_shot():
+    """Placeholder for take a shot skill implementation."""
+    pass

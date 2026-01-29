@@ -3,8 +3,8 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import StatusEffects
-from models.game.positive_effects.buffs.concentration import Concentration
-from models.game.positive_effects.buffs.pierce import Pierce
+from models.game.effects.positive_effects.buffs.concentration import Concentration
+from models.game.effects.positive_effects.buffs.pierce import Pierce
 
 class Focus(BaseEffect):
     name: str = Field(default=StatusEffects.FOCUS.value)

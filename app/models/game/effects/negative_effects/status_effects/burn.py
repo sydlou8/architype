@@ -1,9 +1,8 @@
 from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
-from models.game.enums.effect_types import StatusEffects
-from models.game.effects.negative_effects.debuffs.weaken import Weaken
-from models.game.effects.negative_effects.debuffs.frailty import Frailty
+from models.game.enums.effect_types import StatusEffects, ModifierEffects
+from models.game.enums.stat_types import StatType
 from models.game.effects.over_time_effects.dot import DoT
 
 class Burn(BaseEffect):
@@ -12,23 +11,30 @@ class Burn(BaseEffect):
 
     def generate_effects(self, duration: int = 0, tick_value: int = 0) -> list[AppliedEffect]:
         """Apply the Burn effect to the entity."""
-        # Apply burn damage
+        # Apply burn damage over time
         effects = []
         dot_effects = DoT().generate_effects(duration=duration, tick_value=tick_value)
         effects.extend(dot_effects)
 
-        # Apply debuffs: weakness and frailty
-        # TODO: Adjust for unique effect -- currently stackable --> adjust stat_magnifier after change
-        # Apply Weaken
-        weaken = Weaken()
-        weaken.stat_magnifier = 0.9  
-        weaken_effects = weaken.generate_effects(duration=duration)
-        effects.extend(weaken_effects)
+        # Apply custom debuffs with 0.9 multiplier (10% reduction)
+        # Weaken - reduces physical attack to 90%
+        effects.append(AppliedEffect(
+            effect_name=ModifierEffects.WEAKEN.value,
+            description="Reduces physical attack to 90%.",
+            target=StatType.PHYSICAL_ATTACK,
+            stat_magnifier=0.9,
+            is_unique_effect=False,
+            duration=duration
+        ))
 
-        # Apply Frailty
-        frailty = Frailty()
-        frailty.stat_magnifier = 0.9
-        frailty_effects = frailty.generate_effects(duration=duration)
-        effects.extend(frailty_effects)
+        # Frailty - reduces healing received to 90%
+        effects.append(AppliedEffect(
+            effect_name=ModifierEffects.FRAILTY.value,
+            description="Reduces healing received to 90%.",
+            target=StatType.HEALING_MODIFIER,
+            stat_magnifier=0.9,
+            is_unique_effect=False,
+            duration=duration
+        ))
 
         return effects

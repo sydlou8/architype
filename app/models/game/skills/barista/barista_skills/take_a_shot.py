@@ -32,3 +32,8 @@ class TakeAShot(BaseSkill):
 
         for effect in effects:
             target.add_effect(effect)
+    
+    def level_up(self) -> None:
+        """Level up Take A Shot - increases effect duration."""
+        self.level += 1
+        self.EFFECT_DURATION += 1  # Each level adds 1 more turn of buffs

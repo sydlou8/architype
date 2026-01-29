@@ -13,7 +13,7 @@ class EspressoBomb(BaseSkill):
     skill_type: str = Field(default=SkillType.OFFENSIVE.value)
     description: str = Field(default="An area damage skill that deals physical damage and causes burn for 5 turns.")
     cooldown: int = Field(default=3)
-    power: int = Field(default=50)  # Example power value
+    power: int = Field(default=80)  # Example power value
 
     is_multi_target: bool = Field(default=True)  # Affects multiple targets
 
@@ -43,4 +43,10 @@ class EspressoBomb(BaseSkill):
             target.add_effect(effect)
 
         target.take_damage(base_damage)
+    
+    def level_up(self) -> None:
+        """Level up Espresso Bomb - increases power and burn duration."""
+        self.level += 1
+        self.power += 10  # Bigger damage increase for ultimate skill
+        self.BURN_DURATION += 1  # Longer burn duration
         
