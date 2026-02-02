@@ -17,10 +17,10 @@ from datetime import timedelta
 
 from models.game.party import Party
 from models.game.entities.character.characters.barista import Barista
+from models.game.entities.character.characters.biker import Biker
 from models.game.entities.character.characters.drag_queen import DragQueen
 from models.game.entities.character.characters.emo import Emo
 from models.game.entities.character.characters.jock import Jock
-from models.game.entities.character.characters.raver import Raver
 from core.services.combat_service import CombatService
 
 # Auth imports
@@ -56,10 +56,10 @@ active_battles: dict[str, CombatService] = {}
 # Available character classes
 AVAILABLE_CHARACTERS = {
     "barista": Barista,
+    "biker": Biker,
     "drag_queen": DragQueen,
     "emo": Emo,
     "jock": Jock,
-    "raver": Raver,
 }
 
 

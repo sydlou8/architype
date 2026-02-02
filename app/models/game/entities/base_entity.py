@@ -7,6 +7,7 @@ import random
 
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.stat_types import StatType, register_stat, stats_registry
+from models.game.enums.effect_types import EffectType, StatusEffects
 from models.game.effects.applied_over_time_effect import AppliedOverTimeEffect
 
 if TYPE_CHECKING:
@@ -224,7 +225,15 @@ class BaseEntity(SQLModel, ABC):
             if isinstance(effect, AppliedOverTimeEffect) and effect.tick_value:
                 total_tick_damage += effect.tick_value
         return total_tick_damage
-
+    
+    def apply_shield_block(self) -> bool:
+        """Check for active shield effects and block incoming damage if present."""
+        for effect in self.active_effects:
+            if effect.effect_name == StatusEffects.SHIELD.value:
+                # Shield effect found, block damage
+                return True
+        return False
+        
     def apply_tick_damage(self) -> None:
         """Apply tick damage from active effects to the entity."""
         total_tick_damage = self.get_total_tick_damage()

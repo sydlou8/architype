@@ -68,6 +68,9 @@ class Character(BaseEntity, ABC):
 
     def take_damage(self, amount: int) -> None:
         """Apply damage to the character."""
+        if self.apply_shield_block():
+            # Damage blocked by shield
+            return
         if amount < 0:
             amount = 0
         self.current_health = max(0, self.current_health - amount)
