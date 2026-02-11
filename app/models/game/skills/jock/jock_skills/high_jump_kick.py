@@ -8,7 +8,7 @@ from models.game.enums.skill_types import SkillType
 from models.game.enums.stat_types import StatType
 from models.game.effects.negative_effects.status_effects.stun import Stun
 from models.game.effects.negative_effects.status_effects.bleed import Bleed
-from models.game.effects.negative_effects.debuffs.agility_debuff import AgilityDeb
+from models.game.effects.negative_effects.debuffs.blind import Blind
 from models.game.effects.negative_effects.debuffs.weaken import Weaken # physical attack debuff
 from models.game.effects.applied_effect import AppliedEffect
 
@@ -51,9 +51,9 @@ class HighJumpKick(BaseSkill):
             target.add_effect(effect)
 
         # Apply agility debuff to user (reduces dodge)
-        agility_debuff = AgilityDeb(dodge_decrease=self.DODGE_DECREASE)
-        agility_debuff_effects: list[AppliedEffect] = agility_debuff.generate_effects(duration=self.DEBUFF_DURATION)
-        for effect in agility_debuff_effects:
+        blind = Blind(dodge_decrease=self.DODGE_DECREASE)
+        blind_effects: list[AppliedEffect] = blind.generate_effects(duration=self.DEBUFF_DURATION)
+        for effect in blind_effects:
             user.add_effect(effect)
 
         # Apply weaken debuff to user (reduces physical attack)

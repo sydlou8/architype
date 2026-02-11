@@ -52,6 +52,7 @@ class ModifierEffects(EffectType):
     PIERCE = "pierce"               # increases critical chance
     CONCENTRATION = "concentration" # increases accuracy
     CONCECRATED = "concecrated"     # increases healing received
+    DOUBLE_ATTACK = "double_attack" # allows the affected entity to attack twice for their next turn
 
     # Debuffs
     WEAKEN = "weaken"               # reduces physical attack
