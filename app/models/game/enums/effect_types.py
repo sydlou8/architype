@@ -64,13 +64,3 @@ class ModifierEffects(EffectType):
     CRIPPLED = "crippled"           # reduces dodge
     FRAILTY = "frailty"             # reduces healing received
     INTIMIDATED = "intimidated"     # reduces critical chance
-
-# TODO: Remove registry if not needed
-def register_effect(effect_type: EffectType) -> Callable[..., Any]:
-    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            return func(self, *args, **kwargs)
-        effect_registry[effect_type] = func
-        return wrapper
-    return decorator
