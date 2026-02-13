@@ -64,11 +64,10 @@ def handle_endure(entity: BaseEntity, effect: AppliedEffect, context: dict[str, 
 def handle_confusion(entity: BaseEntity, effect: AppliedEffect, context: dict[str, Any]):
     """Handle the Confusion effect - may cause the entity to hurt itself for a certain duration."""
     context["confused"] = True
-    
+
 @register_effect_handler(StatusEffects.STUN)
 def handle_stun(entity: BaseEntity, effect: AppliedEffect, context: dict[str, Any]):
     """Handle the Stun effect - prevents the entity from taking any action for a certain duration."""
-    # Stun is handled by preventing the entity from taking any action while the effect is active
     context["skip_turn"] = True
 
 @register_effect_handler(StatusEffects.SILENCE)
