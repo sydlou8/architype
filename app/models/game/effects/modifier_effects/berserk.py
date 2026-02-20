@@ -3,11 +3,11 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import EffectType, StatusEffects, ModifierEffects
-from models.game.effects.positive_effects.buffs.haste import Haste
-from models.game.effects.positive_effects.buffs.pierce import Pierce
-from models.game.effects.positive_effects.buffs.strengthen import Strengthen
-from models.game.effects.negative_effects.debuffs.susceptible import Susceptible
-from models.game.effects.negative_effects.debuffs.vulnerable import Vulnerable
+from models.game.effects.modifier_effects.buffs.haste import Haste
+from models.game.effects.modifier_effects.buffs.pierce import Pierce
+from models.game.effects.modifier_effects.buffs.strengthen import Strengthen
+from models.game.effects.modifier_effects.debuffs.susceptible import Susceptible
+from models.game.effects.modifier_effects.debuffs.vulnerable import Vulnerable
 
 class Berserk(BaseEffect):
     name: str = Field(default=StatusEffects.BERSERK.value)

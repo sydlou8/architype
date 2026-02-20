@@ -3,7 +3,7 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import StatusEffects
-from models.game.positive_effects.buffs.haste import Haste
+from models.game.modifier_effects.buffs.haste import Haste
 
 class Invigorated(BaseEffect):
     """Invigorated status effect that applies Haste and removes negative effects."""

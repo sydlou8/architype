@@ -30,3 +30,7 @@ class BaristaSkillRegistry(BaseSkillRegistry[BaristaSkills]):
         BaristaSkills.SCONE_WALL: SconeWall,
         BaristaSkills.WHATS_TEA: WhatsTea,
     }
+
+
+def get_barista_skill(skill_enum: BaristaSkills) -> BaseSkill:
+    return BaristaSkillRegistry.get_skill(skill_enum)

@@ -5,11 +5,11 @@ from models.game.skills.base_skill import BaseSkill
 from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.emo_skills import EmoSkills
 from models.game.enums.skill_types import SkillType
-from models.game.effects.positive_effects.buffs.strengthen import Strengthen
-from models.game.effects.positive_effects.buffs.wisdom import Wisdom
-from models.game.effects.positive_effects.status_effects.hidden import Hidden
-from models.game.effects.negative_effects.debuffs.susceptible import Susceptible
-from models.game.effects.negative_effects.debuffs.vulnerable import Vulnerable
+from models.game.effects.modifier_effects.buffs.strengthen import Strengthen
+from models.game.effects.modifier_effects.buffs.wisdom import Wisdom
+from models.game.effects.status_effects.hidden import Hidden
+from models.game.effects.modifier_effects.debuffs.susceptible import Susceptible
+from models.game.effects.modifier_effects.debuffs.vulnerable import Vulnerable
 from models.game.enums.effect_types import ModifierEffects, StatusEffects
 from models.game.effects.applied_effect import AppliedEffect
 

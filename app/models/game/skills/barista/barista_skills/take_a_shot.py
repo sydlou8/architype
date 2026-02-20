@@ -4,10 +4,10 @@ from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.barista_skills import BaristaSkills
 from models.game.enums.skill_types import SkillType
 from models.game.enums.effect_types import EffectType
-from models.game.effects.positive_effects.status_effects.focus import Focus
-from models.game.effects.positive_effects.buffs.strengthen import Strengthen
-from models.game.effects.positive_effects.buffs.haste import Haste
-from models.game.effects.positive_effects.buffs.agility import Agility
+from models.game.effects.status_effects.focus import Focus
+from models.game.effects.modifier_effects.buffs.strengthen import Strengthen
+from models.game.effects.modifier_effects.buffs.haste import Haste
+from models.game.effects.modifier_effects.buffs.agility import Agility
 
 class TakeAShot(BaseSkill):
     name: str = Field(default=BaristaSkills.TAKE_A_SHOT.value)

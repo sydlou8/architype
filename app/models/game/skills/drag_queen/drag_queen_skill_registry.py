@@ -31,3 +31,7 @@ class DragQueenSkillRegistry(BaseSkillRegistry[DragQueenSkills]):
         DragQueenSkills.GAGGY: Gaggy,
         DragQueenSkills.TIP_YOUR_QUEEN: TipYourQueen,
     }
+
+
+def get_drag_queen_skill(skill_enum: DragQueenSkills) -> BaseSkill:
+    return DragQueenSkillRegistry.get_skill(skill_enum)

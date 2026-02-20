@@ -3,7 +3,7 @@ from typing import Callable, Any
 from models.game.entities.base_entity import BaseEntity
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
-from models.game.enums.effect_types import EffectType, ModifierEffects, StatusEffects, OverTimeEffects
+from models.game.enums.effect_types import EffectType, StatusEffects
 
 EFFECT_HANDLERS = {}
 
@@ -27,7 +27,7 @@ def get_effect_handler(effect_type: EffectType) -> Callable[..., Any]:
 # Example: Double Attack, Shield, etc
 
 # Damage Logic Effects
-@register_effect_handler(ModifierEffects.DOUBLE_ATTACK)
+@register_effect_handler(StatusEffects.DOUBLE_ATTACK)
 def handle_double_attack(entity: BaseEntity, effect: AppliedEffect, context: dict[str, Any]):
     """Handle the Double Attack effect - allows the entity to attack twice for their next turn."""
     # Consume the effect so it only triggers once
@@ -84,3 +84,8 @@ def handle_mute(entity: BaseEntity, effect: AppliedEffect, context: dict[str, An
 def handle_root(entity: BaseEntity, effect: AppliedEffect, context: dict[str, Any]):
     """Handle the Root effect - prevents the entity from using physical skills for a certain duration."""
     context["rooted"] = True
+
+@register_effect_handler(StatusEffects.TAUNT)
+def handle_taunt(entity: BaseEntity, effect: AppliedEffect, context: dict[str, Any]):
+    """Handle the Taunt effect - forces the entity to target the source of the effect for a certain duration."""
+    context["force_target"] = effect.source_entity_id

@@ -5,8 +5,8 @@ from models.game.skills.base_skill import BaseSkill
 from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.biker_skills import BikerSkills
 from models.game.enums.skill_types import SkillType
-from models.game.effects.mixed_effects.berserk import Berserk
-from models.game.effects.positive_effects.status_effects import Hidden
+from models.game.effects.modifier_effects.berserk import Berserk
+from models.game.effects.status_effects import Hidden
 from models.game.effects.applied_effect import AppliedEffect
 
 class Shout(BaseSkill):

@@ -32,3 +32,7 @@ class BikerSkillRegistry(BaseSkillRegistry[BikerSkills]):
         BikerSkills.WHEEL_SPIKES: WheelSpikes,
         BikerSkills.WHEELIE: Wheelie,
     }
+
+
+def get_biker_skill(skill_enum: BikerSkills) -> BaseSkill:
+    return BikerSkillRegistry.get_skill(skill_enum)

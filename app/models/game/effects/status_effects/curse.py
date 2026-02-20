@@ -3,8 +3,8 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import StatusEffects
-from models.game.effects.negative_effects.debuffs.weaken import Weaken
-from models.game.effects.negative_effects.debuffs.fatigue import Fatigue
+from models.game.effects.modifier_effects.debuffs.weaken import Weaken
+from models.game.effects.modifier_effects.debuffs.fatigue import Fatigue
 from models.game.effects.over_time_effects.dot import DoT
 
 class Curse(BaseEffect):

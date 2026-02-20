@@ -17,6 +17,7 @@ if TYPE_CHECKING:
 
 class BaseEntity(SQLModel, ABC):
     id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+    title: str | None = Field(default="Untitled")
 
     # ----------------------- BASE STATS -----------------------
     # Basic attributes

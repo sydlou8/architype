@@ -3,8 +3,8 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import StatusEffects
-from models.game.positive_effects.buffs.consecrated import Consecrated
-from models.game.positive_effects.buffs.wisdom import Wisdom
+from models.game.modifier_effects.buffs.consecrated import Consecrated
+from models.game.modifier_effects.buffs.wisdom import Wisdom
 
 class Blessed(BaseEffect):
     name: str = Field(default=StatusEffects.BLESSED.value)

@@ -4,13 +4,13 @@ from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import EffectType, StatusEffects, ModifierEffects
 from models.game.enums.stat_types import StatType
-from models.game.effects.positive_effects.buffs.strengthen import Strengthen
-from models.game.effects.positive_effects.buffs.wisdom import Wisdom
-from models.game.effects.positive_effects.buffs.defender import Defender
-from models.game.effects.positive_effects.buffs.fortify import Fortify
-from models.game.effects.positive_effects.buffs.haste import Haste
-from models.game.effects.negative_effects.debuffs.frailty import Frailty
-from models.game.effects.negative_effects.debuffs.blind import Blind
+from models.game.effects.modifier_effects.buffs.strengthen import Strengthen
+from models.game.effects.modifier_effects.buffs.wisdom import Wisdom
+from models.game.effects.modifier_effects.buffs.defender import Defender
+from models.game.effects.modifier_effects.buffs.fortify import Fortify
+from models.game.effects.modifier_effects.buffs.haste import Haste
+from models.game.effects.modifier_effects.debuffs.frailty import Frailty
+from models.game.effects.modifier_effects.debuffs.blind import Blind
 
 class Hyped(BaseEffect):
     name: str = Field(default=StatusEffects.HYPED.value)

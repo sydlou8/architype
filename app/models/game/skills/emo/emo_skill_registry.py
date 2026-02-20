@@ -30,3 +30,7 @@ class EmoSkillRegistry(BaseSkillRegistry[EmoSkills]):
         EmoSkills.SHADOW_STRIKE: ShadowStrike,
         EmoSkills.SOUL_DRAIN: SoulDrain,
     }
+
+
+def get_emo_skill(skill_enum: EmoSkills) -> BaseSkill:
+    return EmoSkillRegistry.get_skill(skill_enum)

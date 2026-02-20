@@ -5,7 +5,7 @@ from models.game.enums.skill_types import SkillType
 from models.game.enums.stat_types import StatType
 from models.game.enums.skills.barista_skills import BaristaSkills
 from models.game.enums.effect_types import EffectType
-from models.game.effects.negative_effects.status_effects.burn import Burn
+from models.game.effects.status_effects.burn import Burn
 from models.game.effects.applied_effect import AppliedEffect
 
 class EspressoBomb(BaseSkill):

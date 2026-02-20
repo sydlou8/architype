@@ -6,7 +6,7 @@ from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.jock_skills import JockSkills
 from models.game.enums.skill_types import SkillType
 from models.game.enums.stat_types import StatType
-from models.game.effects.negative_effects.status_effects.stun import Stun
+from models.game.effects.status_effects.stun import Stun
 from models.game.effects.applied_effect import AppliedEffect
 
 class PowerTackle(BaseSkill):

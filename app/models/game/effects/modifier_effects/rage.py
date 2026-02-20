@@ -2,10 +2,10 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import StatusEffects
-from models.game.effects.positive_effects.buffs.strengthen import Strengthen
-from models.game.effects.negative_effects.status_effects.confusion import Confusion
-from models.game.effects.negative_effects.debuffs.weaken import Weaken
-from models.game.effects.negative_effects.debuffs.frailty import Frailty
+from models.game.effects.modifier_effects.buffs.strengthen import Strengthen
+from models.game.effects.status_effects.confusion import Confusion
+from models.game.effects.modifier_effects.debuffs.weaken import Weaken
+from models.game.effects.modifier_effects.debuffs.frailty import Frailty
 
 
 class Rage(BaseEffect):

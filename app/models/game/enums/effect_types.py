@@ -2,8 +2,6 @@ from typing import Any, Callable
 from enum import Enum
 from functools import wraps
 
-effect_registry = {}
-
 class EffectType(Enum):
     pass
 
@@ -23,11 +21,13 @@ class StatusEffects(EffectType):
     SHIELD = "shield"               # blocks incoming damage for a duration
     ENDURE = "endure"               # applies defender and fortify and blocks DOT for a duration
     FOCUS = "focus"                 # applies concentration and pierce for a duration
+    DOUBLE_ATTACK = "double_attack" # allows the affected entity to attack twice for their next turn
 
     # Mixed Effects
     BERSERK = "berserk"             # applies strengthen, haste, and pierce for a duration; however, also applies vulnerable and susceptible for a duration
     HYPED = "hyped"                 # applies strengthen, wisdom, defender, fortify and haste for a duration; however, also applies frality and blind for a duration
     RAGE = "rage"                   # increases physical damage, decreases dodge, decreases accuracy, may cause the affected entity to hurt itself for duration
+    TAUNT = "taunt"                 # forces the affected entity to target the source of the effect for a duration
 
     # Negative Effects
     BURN = "burn"                   # causes damage over time (DOT) and applies weaken and frailty for duration
@@ -52,8 +52,7 @@ class ModifierEffects(EffectType):
     PIERCE = "pierce"               # increases critical chance
     CONCENTRATION = "concentration" # increases accuracy
     CONCECRATED = "concecrated"     # increases healing received
-    DOUBLE_ATTACK = "double_attack" # allows the affected entity to attack twice for their next turn
-
+    
     # Debuffs
     WEAKEN = "weaken"               # reduces physical attack
     FATIGUE = "fatigue"             # reduces magical attack

@@ -4,7 +4,7 @@ from models.game.skills.base_skill import BaseSkill
 from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.emo_skills import EmoSkills
 from models.game.enums.skill_types import SkillType
-from models.game.effects.negative_effects.status_effects.curse import Curse
+from models.game.effects.status_effects.curse import Curse
 from models.game.effects.applied_effect import AppliedEffect
 
 class SoulDrain(BaseSkill):

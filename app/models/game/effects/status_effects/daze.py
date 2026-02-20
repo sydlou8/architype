@@ -3,8 +3,8 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import StatusEffects
-from models.game.effects.negative_effects.debuffs.blind import Blind
-from models.game.effects.negative_effects.debuffs.slow import Slow
+from models.game.effects.modifier_effects.debuffs.blind import Blind
+from models.game.effects.modifier_effects.debuffs.slow import Slow
 
 class Daze(BaseEffect):
     name: str = Field(default=StatusEffects.DAZE.value)

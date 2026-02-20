@@ -6,7 +6,7 @@ from models.game.entities.base_entity import BaseEntity
 from models.game.enums.character_classes import CharacterClasses
 from models.game.enums.stat_types import StatType
 from models.game.enums.skill_types import SkillType
-from models.game.enums.effect_types import EffectType, effect_registry, register_effect
+from models.game.enums.effect_types import EffectType
 from models.game.effects.applied_effect import AppliedEffect
 
 if TYPE_CHECKING:

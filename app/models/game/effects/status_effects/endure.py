@@ -3,8 +3,8 @@ from sqlmodel import Field
 from models.game.effects.base_effect import BaseEffect
 from models.game.effects.applied_effect import AppliedEffect
 from models.game.enums.effect_types import StatusEffects
-from models.game.positive_effects.buffs.defender import Defender
-from models.game.positive_effects.buffs.fortify import Fortify
+from models.game.modifier_effects.buffs.defender import Defender
+from models.game.modifier_effects.buffs.fortify import Fortify
 
 class Endure(BaseEffect):
     name: str = Field(default=StatusEffects.ENDURE.value)

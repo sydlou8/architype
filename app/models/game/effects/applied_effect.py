@@ -10,6 +10,7 @@ class AppliedEffect(SQLModel):
     Stores the effect's parameters and duration.
     """
     id: UUID = Field(default_factory=uuid4, primary_key=True, index=True)
+    source_entity_id: UUID | None = Field(default=None)     # The entity that applied the effect, used for effects like Taunt
 
     effect_name: str | None = Field(default=None)
     description: str | None = Field(default=None)

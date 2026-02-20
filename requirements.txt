@@ -6,6 +6,6 @@ asyncpg # Asynchronous driver for PostgreSQL
 python-dotenv # To load the .env file
 
 # Authentication
-python-jose[cryptography] # JWT tokens
-passlib[bcrypt] # Password hashing
+pyjwt # JWT tokens
+pwdlib[argon2] # Password hashing
 python-multipart # For OAuth2 form data

@@ -5,9 +5,9 @@ from models.game.skills.base_skill import BaseSkill
 from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.emo_skills import EmoSkills
 from models.game.enums.skill_types import SkillType
-from models.game.effects.mixed_effects.taunt import Taunt
-from models.game.effects.positive_effects.status_effects.shield import Shield
-from models.game.effects.positive_effects.status_effects.hidden import Hidden
+from models.game.effects.modifier_effects.taunt import Taunt
+from models.game.effects.status_effects.shield import Shield
+from models.game.effects.status_effects.hidden import Hidden
 from models.game.effects.applied_effect import AppliedEffect
 
 class GuardianSpell(BaseSkill):
@@ -19,7 +19,7 @@ class GuardianSpell(BaseSkill):
     def use(self, user: BaseEntity, targets: list[BaseEntity]) -> None:
         """Use the Guardian Spell skill to apply Taunt to the enemy and Shield and Hidden to self."""
         taunt = Taunt()
-        taunt_effects: list[AppliedEffect] = taunt.generate_effects(duration=3)  # Duration of 3 turns
+        taunt_effects: list[AppliedEffect] = taunt.generate_effects(source_entity_id=user.id, duration=3)  # Duration of 3 turns
         for target in targets:
             for effect in taunt_effects:
                 target.add_effect(effect)

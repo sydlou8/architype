@@ -6,8 +6,8 @@ from models.game.skills.base_skill import BaseSkill
 from models.game.entities.base_entity import BaseEntity
 from models.game.enums.skills.barista_skills import BaristaSkills
 from models.game.enums.skill_types import SkillType
-from models.game.effects.positive_effects.buffs.agility import Agility
-from models.game.effects.mixed_effects.rage import Rage
+from models.game.effects.modifier_effects.buffs.agility import Agility
+from models.game.effects.modifier_effects.rage import Rage
 
 class GenderEspressoN(BaseSkill):
     name: str = Field(default=BaristaSkills.GENDER_ESPRESSO_N.value)

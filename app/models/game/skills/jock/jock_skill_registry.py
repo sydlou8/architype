@@ -32,3 +32,7 @@ class JockSkillRegistry(BaseSkillRegistry[JockSkills]):
         JockSkills.SPIKE: Spike,
         JockSkills.WARMUP: Warmup,
     }
+
+
+def get_jock_skill(skill_enum: JockSkills) -> BaseSkill:
+    return JockSkillRegistry.get_skill(skill_enum)
